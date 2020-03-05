@@ -49,13 +49,19 @@ const partOne = [
   'margin-right',
   'margin-bottom',
   'margin-left',
+];
+
+const partTwo = [
   'padding',
   'padding-top',
   'padding-right',
   'padding-bottom',
   'padding-left',
+  'object-fit', 
+  'object-position',
+  'overflow', 
+  'overflow-x', 
+  'overflow-y'
 ];
-
-const partTwo = ['object-fit', 'object-position', 'overflow', 'overflow-x', 'overflow-y'];
 
 module.exports = ({ border }) => [].concat(partOne, border ? borderProps : [], partTwo);
