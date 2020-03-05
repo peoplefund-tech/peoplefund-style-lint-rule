@@ -1,80 +1,134 @@
-# stylelint-order [![Build Status][ci-img]][ci] [![npm version][npm-version-img]][npm] [![npm downloads last month][npm-downloads-img]][npm]
+# stylelint-config-rational-order
 
-A plugin pack of order-related linting rules for [stylelint]. Every rule support autofixing (`stylelint --fix`).
+[![NPM version][version-img]][npm-url]
+[![NPM downloads][downloads-img]][npm-url]
+[![Build status][ci-img]][ci-url]
+[![License][l-img]][l-url]
 
-## Installation
+Stylelint config that sorts related property declarations by grouping together following the order:
 
-1. If you haven't, install [stylelint]:
+1.  Positioning
+2.  Box Model
+3.  Typography
+4.  Visual
+5.  Animation
+6.  Misc
 
-```
-npm install stylelint --save-dev
-```
+```css
+.declaration-order {
+  /* Positioning */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
 
-2.  Install `stylelint-oder`:
+  /* Box Model */
+  display: block;
+  float: right;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
 
-```
-npm install stylelint-order --save-dev
+  /* Typography */
+  color: #888;
+  font: normal 16px Helvetica, sans-serif;
+  line-height: 1.3;
+  text-align: center;
+
+  /* Visual */
+  background-color: #eee;
+  border: 1px solid #888;
+  border-radius: 4px;
+  opacity: 1;
+
+  /* Animation */
+  transition: all 1s;
+
+  /* Misc */
+  user-select: none;
+}
 ```
 
 ## Usage
 
-Add `stylelint-order` to your stylelint config `plugins` array, then add rules you need to the rules list. All rules from stylelint-order need to be namespaced with `order`.
+1.  Add `stylelint`, `stylelint-order` and this package to your project:
 
-```json
+```bash
+npm install --save-dev stylelint stylelint-order stylelint-config-rational-order
+# or, if you prefer yarn over npm:
+yarn add --dev stylelint stylelint-order stylelint-config-rational-order
+```
+
+2.  Add this package to the end of your extends array inside Stylelint
+    configuration (.stylelintrc for example):
+
+```javascript
 {
-	"plugins": [
-		"stylelint-order"
-	],
-	"rules": {
-		"order/order": [
-			"custom-properties",
-			"declarations"
-		],
-		"order/properties-alphabetical-order": true
-	}
+  "extends": [
+    // "stylelint-config-standard",
+    "stylelint-config-rational-order"
+  ]
 }
 ```
 
-## Rules
-
-* [`order`](./rules/order/README.md): Specify the order of content within declaration blocks.
-* [`properties-order`](./rules/properties-order/README.md): Specify the order of properties within declaration blocks.
-* [`properties-alphabetical-order`](./rules/properties-alphabetical-order/README.md): Specify the alphabetical order of properties within declaration blocks.
-
-## Autofixing
-
-Every rule supports autofixing with `stylelint --fix`. [postcss-sorting] is used internally for order autofixing.
-
-Automatic sorting has some limitations that are described for every rule, if any. Please, take a look at [how comments are handled](https://github.com/hudochenkov/postcss-sorting#handling-comments) by `postcss-sorting`.
-
-CSS-in-JS styles with template interpolation [could be ignored by autofixing](https://github.com/hudochenkov/postcss-sorting#css-in-js) to avoid style corruption.
-
-Autofixing is enabled by default if it's enabled in stylelint's configuration file. It can be disabled on a per rule basis using the secondary option `disableFix: true`. Here's an example:
-
-```json
-	"rules": {
-		"order/order": [
-			[
-				"custom-properties",
-				"declarations"
-			],
-			{
-				"disableFix": true
-			}
-		]
-	}
+This shareable config contains the following:
+```javascript
+{
+  "plugins": [
+    "stylelint-order",
+    "stylelint-config-rational-order/plugin"
+  ],
+  "rules": {
+    "order/properties-order": [],
+    "plugin/rational-order": [true, {
+      "border-in-box-model": false,
+      "empty-line-between-groups": false,
+    }]
+  }
+}
 ```
 
-Less may work but isn't officially supported.
+Since it adds `stylelint-order` and `stylelint-config-rational-order` to plugins and also adds required rules, you don't have to do this yourself when extending this config.
 
-## Thanks
 
-`properties-order` and `properties-alphabetical-order` code and README are based on the `declaration-block-properties-order` rule which was a core rule prior to stylelint 8.0.0.
+## Optional options / rules
 
-[ci-img]: https://travis-ci.org/hudochenkov/stylelint-order.svg
-[ci]: https://travis-ci.org/hudochenkov/stylelint-order
-[npm-version-img]: https://img.shields.io/npm/v/stylelint-order.svg
-[npm-downloads-img]: https://img.shields.io/npm/dm/stylelint-order.svg
-[npm]: https://www.npmjs.com/package/stylelint-order
-[stylelint]: https://stylelint.io/
-[postcss-sorting]: https://github.com/hudochenkov/postcss-sorting
+#### border-in-box-model
+
+Defines to which group the **border** property belongs to.
+
+If `true` **border** property belongs to the **box model section**.
+The default value is `false` (**border** property belongs to the **visual section**).
+
+
+#### empty-line-between-groups
+
+If `true` adds an empty line between groups. The default value is `false`.
+
+## FAQ
+
+<details>
+  <summary>Why should I use the rational order and group and sort CSS properties by type instead of alphabetical order?</summary>
+
+  The pros and cons of both ways in detail:
+
+* [Happy Potter and the Order of CSS](https://dev.to/thekashey/happy-potter-and-the-order-of-css-5ec)
+* [“Outside In” — Ordering CSS Properties by Importance](https://webdesign.tutsplus.com/articles/outside-in-ordering-css-properties-by-importance--cms-21685)
+</details>
+
+## Credits
+
+* [Code Guide by @mdo](http://codeguide.co/)
+* [Code Guide by HTML Academy](https://github.com/htmlacademy/codeguide)
+
+
+[npm-url]: https://www.npmjs.com/package/stylelint-config-rational-order
+[downloads-img]: https://img.shields.io/npm/dt/stylelint-config-rational-order.svg?style=flat-square
+[version-img]: https://img.shields.io/npm/v/stylelint-config-rational-order.svg?style=flat-square
+[ci-url]: https://travis-ci.org/constverum/stylelint-config-rational-order
+[ci-img]: https://img.shields.io/travis/constverum/stylelint-config-rational-order.svg?style=flat-square
+[l-url]: https://www.npmjs.com/package/stylelint-config-rational-order
+[l-img]: https://img.shields.io/npm/l/stylelint-config-rational-order.svg?style=flat-square

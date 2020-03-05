@@ -1,9 +1,3 @@
-const { createPlugin } = require('stylelint');
-const { namespace } = require('./utils');
-const rules = require('./rules');
+const config = require('./config/extendedStylelintOrderConfig');
 
-const rulesPlugins = Object.keys(rules).map(ruleName => {
-	return createPlugin(namespace(ruleName), rules[ruleName]);
-});
-
-module.exports = rulesPlugins;
+module.exports = config();

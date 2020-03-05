@@ -1,75 +1,47 @@
 {
-  "name": "@peoplefund-tech/stylelint-order",
-  "version": "0.0.2",
-  "description": "A collection of order related linting rules for stylelint by peoplefund.",
-  "keywords": [
-    "peoplefund",
-    "stylelint-plugin",
-    "stylelint",
-    "css",
-    "lint",
-    "order"
-  ],
+  "name": "@peoplefund/stylelint-order",
+  "version": "0.1.2",
+  "description": "Stylelint config that sorts related property declarations by grouping together following the order: Positioning, Box Model, Typography, Visual, Animation, Other.",
   "author": "Peoplefund",
-  "license": "MIT",
-  "repository": "hudochenkov/stylelint-order",
-  "bugs": {
-    "url": "https://github.com/peoplefund-tech/peoplefund-style-lint-rule/issues"
-  },
-  "homepage": "https://github.com/peoplefund-tech/peoplefund-style-lint-rule",
-  "files": [
-    "rules",
-    "utils",
-    "!**/tests",
-    "index.js",
-    "!.DS_Store"
-  ],
+  "license": "Apache-2.0",
   "main": "index.js",
-  "dependencies": {
-    "lodash": "^4.17.15",
-    "postcss": "^7.0.26",
-    "postcss-sorting": "^5.0.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/constverum/stylelint-config-rational-order.git"
   },
-  "peerDependencies": {
-    "stylelint": "^10.0.1 || ^11.0.0 || ^12.0.0 || ^13.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-hudochenkov": "^4.0.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-unicorn": "^16.1.1",
-    "husky": "^3.1.0",
-    "jest": "^24.9.0",
-    "lint-staged": "^9.5.0",
-    "prettier": "~1.19.1",
-    "stylelint": "^12.0.1"
+  "bugs": {
+    "url": "https://github.com/constverum/stylelint-config-rational-order/issues"
   },
   "scripts": {
-    "pretest": "eslint . --max-warnings=0",
-    "test": "jest",
-    "jest": "jest",
-    "watch": "jest --watch",
-    "coverage": "jest --coverage",
-    "fix": "eslint . --fix --max-warnings=0 && prettier '**/*.js' --write"
+    "lint": "node ./node_modules/eslint/bin/eslint.js .",
+    "test": "node ./node_modules/jest-cli/bin/jest.js"
   },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix --max-warnings=0",
-      "prettier --write",
-      "git add"
-    ]
+  "keywords": [
+    "stylelint",
+    "stylelint-config",
+    "stylelint-order",
+    "stylelint-plugin",
+    "properties-order",
+    "css property order",
+    "declaration-order",
+    "css declaration order",
+    "rational-css",
+    "order-css",
+    "order"
+  ],
+  "dependencies": {
+    "stylelint": "^9.10.1",
+    "stylelint-order": "^2.2.1"
   },
-  "jest": {
-    "setupFiles": [
-      "./jest-setup.js"
-    ],
-    "testEnvironment": "node",
-    "testRegex": ".*\\.test\\.js$|rules/.*/tests/.*\\.js$"
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.4.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^24.7.1",
+    "prettier": "^1.16.4"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  }
+  "homepage": "https://github.com/constverum/stylelint-config-rational-order"
 }
