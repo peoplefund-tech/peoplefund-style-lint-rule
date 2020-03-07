@@ -2,7 +2,7 @@ const stylelint = require('stylelint');
 const propertiesOrderRule = require('stylelint-order/rules/properties-order');
 const configCreator = require('../config/configCreator');
 
-const ruleName = 'plugin/rational-order';
+const ruleName = 'plugin/peoplefund-order';
 
 module.exports = stylelint.createPlugin(
   ruleName,

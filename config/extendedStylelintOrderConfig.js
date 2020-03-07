@@ -14,7 +14,7 @@ module.exports = ({
         ignoreProperties: specialProps,
       },
     ],
-    'plugin/rational-order': [
+    'plugin/peoplefund-order': [
       true,
       {
         'border-in-box-model': borderInBoxModel,
