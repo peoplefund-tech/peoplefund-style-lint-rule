@@ -1,6 +1,6 @@
 # Peoplefund Style Lint Rule
 
-[![License][l-img]][l-url]
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Stylelint config that sorts related property declarations by grouping together following the order:
 
